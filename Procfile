@@ -1,0 +1,1 @@
+web: gunicorn casino_crimes.app:app
