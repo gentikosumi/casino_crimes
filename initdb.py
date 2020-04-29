@@ -1,4 +1,4 @@
-from casino_crimes.app import db
+from Casino_Crimes.app import db
 
 # db.drop_all()
 db.create_all()
