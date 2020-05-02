@@ -1,14 +1,14 @@
 from data.js
-var tableData = data;
+var tableData = results;
 var tbody = d3.select('tbody');
-var input = d3.select('input');
-var btn = d3.select('button');
+// var input = d3.select('input');
+// var btn = d3.select('button');
 
 renderData(tableData);
 btn.on('click', handleClick);
 
 // =========================================
-function renderData(data) {
+function renderData(results) {
     tbody.html('');
 
     data.forEach(tableRow => {
