@@ -73,14 +73,13 @@ def fincrimes():
 def industryType():
     """Return a list fo types of industry with their number for each state"""
     # session = Session(engine)
-    results = db.session.query(CasinoSW.Industry, CasinoSW.State, CasinoSW.Year, str(CasinoSW.Lat), str(CasinoSW.Long), func.sum(CasinoSW.Count)).\
-        group_by(CasinoSW.Industry, CasinoSW.State, CasinoSW.Year).order_by(func.sum(CasinoSW.Count).desc()).all()
+    results = db.session.query(CasinoSW.Industry, CasinoSW.State, str(CasinoSW.Lat), str(CasinoSW.Long), func.sum(CasinoSW.Count)).\
+        group_by(CasinoSW.State, CasinoSW.Industry).order_by(func.sum(CasinoSW.Count).desc()).all()
     industry = []
-    for a,b,c,d,e,f in results:
+    for a,b,d,e,f in results:
         entry = {
             "Industry": a,
             "State": b,
-            "Year": c,
             "Lat": d,
             "Long": e,
             "Count":f
@@ -95,14 +94,14 @@ def industryType():
     # session.close()
     return jsonify(industry)
 
-@app.route("/states")
-def states():
-    session = Session(engine)
-    state_data = db.session.query(CasinoSW.State, CasinoSW.Industry, CasinoSW.Year, str(CasinoSW.Lat), str(CasinoSW.Long), func.sum(CasinoSW.Count)).\
-        group_by(CasinoSW.State, CasinoSW.Industry, CasinoSW.Year).order_by(func.sum(CasinoSW.Count).desc()).all()
+# @app.route("/states")
+# def states():
+#     session = Session(engine)
+#     state_data = db.session.query(CasinoSW.State, CasinoSW.Industry, CasinoSW.Year, str(CasinoSW.Lat), str(CasinoSW.Long), func.sum(CasinoSW.Count)).\
+#         group_by(CasinoSW.State, CasinoSW.Industry, CasinoSW.Year).order_by(func.sum(CasinoSW.Count).desc()).all()
     
-    session.close()
-    return jsonify(state_data)
+#     session.close()
+#     return jsonify(state_data)
 
 @app.route("/county")
 def counties():
