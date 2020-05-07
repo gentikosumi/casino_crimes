@@ -14,7 +14,7 @@ var street = L.tileLayer(
   }
 ).addTo(myMap);
 function getData() {
-  d3.json("http://127.0.0.1:5000/county").then( function (data) {
+  d3.json("/county").then( function (data) {
     data.forEach(function (d) {
       var lat = d.Lat;``
       var long = d.Long;
